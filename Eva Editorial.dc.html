@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: #f4efe7; }
+    ::selection { background: #2a211b; color: #f4efe7; }
+    @keyframes evaZoom { from { transform: scale(1.02); } to { transform: scale(1.12); } }
+    @keyframes evaPulse { 0% { box-shadow: 0 0 0 0 rgba(244,239,231,.55); } 70% { box-shadow: 0 0 0 18px rgba(244,239,231,0); } 100% { box-shadow: 0 0 0 0 rgba(244,239,231,0); } }
+    @keyframes evaDrift { 0% { transform: translateX(-6px); } 100% { transform: translateX(6px); } }
+    @keyframes evaScrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .eva-scroll-track { will-change: transform; }
+    .eva-scroll-track:hover { animation-play-state: paused; }
+  </style>
+</helmet>
+
+<div style="font-family: 'Newsreader', serif; color: #1a1611; background: #f4efe7;">
+
+  <!-- NAV -->
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 40px; transition: background .45s ease, backdrop-filter .45s ease; background: {{ navBg }}; border-bottom: 1px solid {{ navBorder }}; backdrop-filter: {{ navBlur }}; -webkit-backdrop-filter: {{ navBlur }};">
+    <a href="#capa" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; color: {{ navInk }}; justify-self: start;"></a>
+    <a href="#capa" style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 26px; letter-spacing: 6px; text-decoration: none; color: {{ navInk }}; justify-self: center;">LUME</a>
+    <nav style="display: flex; gap: 26px; align-items: center; justify-self: end;">
+      <a href="#sobre" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: {{ navInk }};">Sobre</a>
+      <a href="#tratamentos" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: {{ navInk }};">Tratamentos</a>
+      <a href="#transformacoes" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: {{ navInk }};">Transformações</a>
+      <a href="#espaco" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: {{ navInk }};">Espaço</a>
+      <a href="#contato" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: {{ navInk }}; border: 1px solid {{ navInk }}; padding: 8px 16px; border-radius: 100px;">Agendar</a>
+    </nav>
+  </header>
+
+  <!-- COVER -->
+  <section id="capa" style="position: relative; height: 100vh; min-height: 720px; background: #2a211b; overflow: hidden;">
+    <div style="position: absolute; inset: 0; animation: evaZoom 24s ease-in-out infinite alternate;">
+      <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1600&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; opacity: .92;">
+    </div>
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,17,14,.55) 0%, rgba(20,17,14,0) 26%, rgba(20,17,14,0) 50%, rgba(20,17,14,.74) 100%);"></div>
+
+    <div style="position: absolute; top: 88px; left: 40px; right: 40px; display: flex; justify-content: space-between; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(244,239,231,.78); opacity: {{ introOp }}; transition: opacity 1.1s ease;">
+      <span>São Paulo · Brasil</span>
+      <span>Facial &amp; Corporal — Est. 2018</span>
+    </div>
+
+    <div style="position: absolute; left: 40px; right: 40px; bottom: 52px;">
+      
+      <div style="display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px;">
+        <div style="opacity: {{ introOp }}; transform: translateY({{ introTy }}); transition: opacity 1s ease .15s, transform 1s cubic-bezier(.6,0,.2,1) .15s;">
+          <div style="font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(244,239,231,.8); margin-bottom: 22px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+            <span style="display: flex; align-items: center; gap: 10px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(244,239,231,.6); flex-shrink: 0;"></span>Skincare avançado</span>
+            <span style="display: flex; align-items: center; gap: 10px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(244,239,231,.6); flex-shrink: 0;"></span>Modelagem corporal</span>
+            <span style="display: flex; align-items: center; gap: 10px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(244,239,231,.6); flex-shrink: 0;"></span>Bioestimuladores</span>
+          </div>
+          <h1 style="font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(46px, 6.4vw, 112px); line-height: .96; letter-spacing: -1px; color: #f4efe7; max-width: 14ch;">O cuidado que enxerga você por <em style="font-style: italic;">inteiro</em>.</h1>
+        </div>
+        <a href="#contato" style="flex-shrink: 0; width: 132px; height: 132px; border-radius: 50%; border: 1px solid rgba(244,239,231,.7); display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: #f4efe7; gap: 4px; opacity: {{ introOp }}; transition: opacity 1s ease .35s, background .4s ease, color .4s ease;" style-hover="background:#f4efe7; color:#1a1611;">
+          <span style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase;">Agendar</span>
+          <span style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 20px;">avaliação</span>
+          <span style="font-size: 16px; margin-top: 2px;">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 SOBRE -->
+  <section id="sobre" style="padding: 0 40px;">
+    <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid #1a1611; padding: 26px 0 64px;">
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">01</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">A clínica</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 72px; padding-bottom: 120px;">
+      <div>
+        <h2 style="font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(34px, 4.2vw, 68px); line-height: 1.04; letter-spacing: -.5px; margin-bottom: 48px; max-width: 16ch;">Estética não é padronização. É <em style="font-style: italic;">cuidado.</em></h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 720px;">
+          <p style="font-family: 'Newsreader', serif; font-size: 18px; line-height: 1.72; font-weight: 300; color: #3a322a;"><span style="float: left; font-family: 'Bodoni Moda', serif; font-size: 64px; line-height: .72; padding: 8px 12px 0 0; color: #6b4f3a;">A</span> LUME nasceu de uma ideia simples: cada pessoa que entra aqui passa por uma avaliação completa antes de qualquer procedimento — para que o tratamento respeite o seu tempo, o seu corpo e os seus objetivos.</p>
+          <p style="font-family: 'Newsreader', serif; font-size: 18px; line-height: 1.72; font-weight: 300; color: #3a322a;">Unimos tecnologia de ponta a um atendimento humano e próximo, num ambiente acolhedor onde você pode relaxar e confiar. Beleza que valoriza quem você já é — sem excessos, sem fórmulas prontas.</p>
+        </div>
+        <div style="display: flex; gap: 64px; margin-top: 64px; padding-top: 36px; border-top: 1px solid #cdbfab;">
+          <div><div style="font-family: 'Bodoni Moda', serif; font-size: 52px; color: #1a1611;">+8</div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 6px;">anos de história</div></div>
+          <div><div style="font-family: 'Bodoni Moda', serif; font-size: 52px; color: #1a1611;">+3<span style="font-size: 26px;"> mil</span></div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 6px;">atendimentos</div></div>
+          <div><div style="font-family: 'Bodoni Moda', serif; font-size: 52px; color: #1a1611;">5,0</div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 6px;">no Google</div></div>
+        </div>
+      </div>
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 3/4; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=900&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 14px; display: flex; justify-content: space-between;"><span>Fig. 01 — Atendimento individual</span><span>Eva Atelier</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 02 TRATAMENTOS — expanding panels -->
+  <section id="tratamentos" style="padding: 0 40px; background: #ece4d6;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 26px 0 40px;">
+      <div style="display: flex; align-items: baseline; gap: 24px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">02</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Tratamentos</span>
+      </div>
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">Passe o mouse para explorar →</span>
+    </div>
+    <div style="display: flex; gap: 10px; height: 600px; padding-bottom: 110px;">
+      <sc-for list="{{ treatments }}" as="t" hint-placeholder-count="6">
+        <div onMouseEnter="{{ t.onEnter }}" onClick="{{ t.onEnter }}" style="position: relative; flex: {{ t.flex }}; min-width: 0; height: 540px; overflow: hidden; cursor: pointer; transition: flex .65s cubic-bezier(.62,0,.2,1);">
+          <img src="{{ t.img }}" alt="{{ t.title }}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale({{ t.scale }}); transition: transform 1.1s cubic-bezier(.62,0,.2,1);">
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,17,14,.25) 0%, rgba(20,17,14,0) 35%, rgba(20,17,14,{{ t.shade }}) 100%); transition: background .6s ease;"></div>
+          <span style="position: absolute; top: 22px; left: 22px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; color: rgba(244,239,231,.85);">{{ t.num }}</span>
+          <div style="position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 28px; opacity: {{ t.vOp }}; transition: opacity .35s ease;">
+            <span style="writing-mode: vertical-rl; transform: rotate(180deg); font-family: 'Bodoni Moda', serif; font-size: 24px; color: #f4efe7; letter-spacing: 1px; white-space: nowrap;">{{ t.title }}</span>
+          </div>
+          <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 34px 32px; opacity: {{ t.eOp }}; transform: translateY({{ t.eTy }}); transition: opacity .5s ease .1s, transform .55s cubic-bezier(.62,0,.2,1) .1s; pointer-events: {{ t.pe }};">
+            <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #cbb79c;">{{ t.cat }}</span>
+            <h3 style="font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 38px; line-height: 1.02; color: #f4efe7; margin: 12px 0 14px;">{{ t.title }}</h3>
+            <p style="font-family: 'Newsreader', serif; font-size: 16px; line-height: 1.62; font-weight: 300; color: rgba(244,239,231,.86); max-width: 42ch; margin-bottom: 22px;">{{ t.desc }}</p>
+            <a href="#contato" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f4efe7; text-decoration: none; border-bottom: 1px solid rgba(244,239,231,.5); padding-bottom: 5px;">Agendar ↗</a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 03 TRANSFORMAÇÕES -->
+  <section id="transformacoes" style="padding: 0 40px; background: #1a1611; color: #ece4d6;">
+    <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid rgba(236,228,214,.32); padding: 26px 0 12px;">
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #cbb79c;">03</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #cbb79c;">Transformações</span>
+    </div>
+    <div style="text-align: center; padding: 30px 0 48px;">
+      <h2 style="font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(38px, 5vw, 82px); line-height: 1.02; letter-spacing: -.5px; color: #f4efe7;">Resultados que falam <em style="font-style: italic;">por si.</em></h2>
+      <p style="font-family: 'Newsreader', serif; font-size: 17px; line-height: 1.7; font-weight: 300; color: #b6ab98; max-width: 52ch; margin: 22px auto 0;">Arraste para revelar a transformação. Cada caso é um protocolo personalizado — escolha um tratamento abaixo.</p>
+    </div>
+
+    <!-- featured viewer -->
+    <div style="max-width: 1040px; margin: 0 auto;">
+      <div ref="{{ baRef }}" onMouseMove="{{ onDrag }}" onTouchMove="{{ onDrag }}" style="position: relative; aspect-ratio: 16/10; overflow: hidden; cursor: ew-resize; user-select: none; background: #2a211b; box-shadow: 0 40px 90px rgba(0,0,0,.45);">
+        <sc-for list="{{ cases }}" as="c" hint-placeholder-count="4">
+          <div style="position: absolute; inset: 0; opacity: {{ c.layerOp }}; transition: opacity .7s ease; pointer-events: none;">
+            <img src="{{ c.before }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; inset: 0; clip-path: inset(0 0 0 {{ baPct }}%);"><img src="{{ c.after }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"></div>
+          </div>
+        </sc-for>
+
+        <div style="position: absolute; top: 18px; left: 18px; font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: #f4efe7; background: rgba(26,22,17,.55); backdrop-filter: blur(4px); padding: 7px 13px;">Antes</div>
+        <div style="position: absolute; top: 18px; right: 18px; font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: #1a1611; background: rgba(244,239,231,.88); padding: 7px 13px;">Depois</div>
+
+        <!-- meta overlay -->
+        <div style="position: absolute; left: 18px; bottom: 18px; right: 18px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; pointer-events: none;">
+          <div>
+            <div style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: #cbb79c; margin-bottom: 8px;">{{ active.num }} · {{ active.cat }}</div>
+            <div style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: clamp(22px, 2.6vw, 34px); color: #f4efe7; line-height: 1;">{{ active.result }}</div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <span style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: #f4efe7; background: rgba(26,22,17,.5); backdrop-filter: blur(4px); padding: 8px 12px;">{{ active.sessions }}</span>
+            <span style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: #f4efe7; background: rgba(26,22,17,.5); backdrop-filter: blur(4px); padding: 8px 12px;">{{ active.days }}</span>
+          </div>
+        </div>
+
+        <!-- handle -->
+        <div style="position: absolute; top: 0; bottom: 0; width: 1px; background: #f4efe7; left: {{ baPct }}%;">
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 52px; height: 52px; border-radius: 50%; background: #f4efe7; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 14px; color: #1a1611; animation: evaPulse 2.4s ease-out infinite;">
+            <span style="animation: evaDrift 1.4s ease-in-out infinite alternate;">⟷</span>
+          </div>
+        </div>
+      </div>
+      <div style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 14px; text-align: center;">Imagens ilustrativas autorizadas · resultados variam conforme avaliação individual</div>
+    </div>
+
+    <!-- case selector -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 56px 0 110px;">
+      <sc-for list="{{ cases }}" as="c" hint-placeholder-count="4">
+        <div onMouseEnter="{{ c.onEnter }}" onClick="{{ c.onEnter }}" style="cursor: pointer; padding-top: 18px; border-top: 2px solid {{ c.barColor }}; transition: border-color .4s ease;">
+          <div style="aspect-ratio: 16/11; overflow: hidden; background: #2a211b; margin-bottom: 14px;">
+            <img src="{{ c.after }}" alt="{{ c.treat }}" style="width: 100%; height: 100%; object-fit: cover; filter: {{ c.thumbFilter }}; transform: scale({{ c.thumbScale }}); transition: filter .5s ease, transform .8s ease;">
+          </div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px;">
+            <span style="font-family: 'Bodoni Moda', serif; font-size: 21px; color: {{ c.labelColor }}; transition: color .4s ease;">{{ c.treat }}</span>
+            <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: #8c857a;">{{ c.num }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 04 ESPAÇO -->
+  <section id="espaco" style="padding: 0 40px;">
+    <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid #1a1611; padding: 26px 0 56px;">
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">04</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Nosso espaço</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding-bottom: 32px;">
+      <figure style="margin: 0; grid-column: span 2;">
+        <div style="aspect-ratio: 16/10; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1100&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 03 — Recepção</figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 4/5; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 04 — Detalhes</figcaption>
+      </figure>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding-bottom: 120px;">
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 1; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 05 — Sala de procedimentos</figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 1; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 06 — Bem-estar</figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 1; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 07 — Ambiente</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 05 DEPOIMENTOS -->
+  <section style="padding: 0; background: #ece4d6; overflow: hidden;">
+    <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid #1a1611; padding: 26px 40px 72px;">
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">05</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Palavra de quem confia</span>
+    </div>
+    <div style="overflow: hidden; padding-bottom: 110px; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);">
+      <div class="eva-scroll-track" style="display: flex; gap: 20px; animation: evaScrollLeft 90s linear infinite; width: max-content;">
+
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Me senti acolhida desde a primeira avaliação. Os resultados na minha pele superaram tudo o que eu esperava."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">M</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Marina L.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Skincare avançado</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Profissionais que realmente escutam. Em poucos meses recuperei minha confiança e me sinto muito melhor."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">C</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Carolina R.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Modelagem corporal</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Ambiente lindo, atendimento impecável e resultados naturais. Virei cliente para a vida toda."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">B</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Beatriz S.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Bioestimuladores</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Nunca imaginei que cuidar da pele pudesse ser tão prazeroso. A equipe entende o que você precisa e entrega muito mais."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">A</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Ana C.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Skincare avançado</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Atendimento personalizado e resultados que superam as expectativas. Me sinto renovada a cada sessão."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">J</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Juliana P.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Skincare avançado</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Depois do tratamento recuperei a autoestima que achei que havia perdido. Recomendo de olhos fechados."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">F</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Fernanda M.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Bioestimuladores</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"O acompanhamento é diferenciado. Sinto que aqui me tratam como pessoa, não apenas como cliente."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">R</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Renata S.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Modelagem corporal</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"A transformação foi gradual e natural, exatamente como eu queria. Profissionais verdadeiramente excepcionais."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">C</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Camila O.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Skincare avançado</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Tinha muitas dúvidas antes de começar, mas fui acolhida com paciência e carinho desde o primeiro contato."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">L</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Larissa T.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Bioestimuladores</div></div></div></div>
+        <!-- duplicatas para loop contínuo -->
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Me senti acolhida desde a primeira avaliação. Os resultados na minha pele superaram tudo o que eu esperava."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">M</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Marina L.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Skincare avançado</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Profissionais que realmente escutam. Em poucos meses recuperei minha confiança e me sinto muito melhor."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">C</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Carolina R.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Modelagem corporal</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Ambiente lindo, atendimento impecável e resultados naturais. Virei cliente para a vida toda."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">B</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Beatriz S.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Bioestimuladores</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Nunca imaginei que cuidar da pele pudesse ser tão prazeroso. A equipe entende o que você precisa e entrega muito mais."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">A</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Ana C.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Skincare avançado</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Atendimento personalizado e resultados que superam as expectativas. Me sinto renovada a cada sessão."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">J</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Juliana P.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Skincare avançado</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Depois do tratamento recuperei a autoestima que achei que havia perdido. Recomendo de olhos fechados."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">F</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Fernanda M.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Bioestimuladores</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"O acompanhamento é diferenciado. Sinto que aqui me tratam como pessoa, não apenas como cliente."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">R</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Renata S.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Modelagem corporal</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"A transformação foi gradual e natural, exatamente como eu queria. Profissionais verdadeiramente excepcionais."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">C</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Camila O.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Skincare avançado</div></div></div></div>
+        <div style="background: #f4efe7; border-radius: 14px; padding: 34px; display: flex; flex-direction: column; gap: 20px; width: 360px; flex-shrink: 0;"><div style="color: #c4a882; font-size: 15px; letter-spacing: 4px;">★★★★★</div><p style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 16.5px; line-height: 1.65; color: #1a1611; flex: 1;">"Tinha muitas dúvidas antes de começar, mas fui acolhida com paciência e carinho desde o primeiro contato."</p><div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #c4a882; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 13px; color: #f4efe7; flex-shrink: 0;">L</div><div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #1a1611; margin-bottom: 4px;">Larissa T.</div><div style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a;">Bioestimuladores</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" style="background: #1a1611; color: #ece4d6; padding: 0 40px;">
+    <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid rgba(236,228,214,.3); padding: 26px 0 64px;">
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #cbb79c;">↗</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #cbb79c;">Agende sua avaliação</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 380px; gap: 60px; padding-bottom: 90px; align-items: start;">
+
+      <!-- SELETORES -->
+      <div>
+        <h2 style="font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(38px, 5vw, 88px); line-height: .98; letter-spacing: -1px; color: #f4efe7; margin-bottom: 64px;">Marque sua <em style="font-style: italic;">avaliação.</em></h2>
+        <!-- DIA -->
+        <div style="margin-bottom: 56px;">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #cbb79c;">01</span>
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #ece4d6;">Escolha o dia</span>
+            <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: #8c857a;">domingo fechado</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px;">
+            <sc-for list="{{ bookDays }}" as="d" hint-placeholder-count="10">
+              <button onClick="{{ d.onClick }}" style="background: {{ d.bg }}; border: 1px solid {{ d.border }}; border-radius: 10px; padding: 14px 8px; width: 100%; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; transition: background .25s ease, border-color .25s ease;">
+                <span style="font-family: 'Space Mono', monospace; font-size: 8.5px; letter-spacing: 2px; text-transform: uppercase; color: {{ d.labelColor }};">{{ d.label }}</span>
+                <span style="font-family: 'Bodoni Moda', serif; font-size: 26px; font-weight: 400; line-height: 1; color: {{ d.color }};">{{ d.day }}</span>
+                <span style="font-family: 'Space Mono', monospace; font-size: 8.5px; letter-spacing: 1px; color: {{ d.labelColor }};">{{ d.month }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- HORÁRIO -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #cbb79c;">02</span>
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #ece4d6;">Escolha o horário</span>
+            <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: #8c857a; font-style: italic;">{{ slotHint }}</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; opacity: {{ slotsOp }}; pointer-events: {{ slotsPe }}; transition: opacity .4s ease;">
+            <sc-for list="{{ bookSlots }}" as="s" hint-placeholder-count="12">
+              <button onClick="{{ s.onClick }}" style="background: {{ s.bg }}; color: {{ s.color }}; border: 1px solid {{ s.border }}; border-radius: 8px; padding: 13px 22px; font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 1px; cursor: {{ s.cursor }}; text-decoration: {{ s.strike }}; transition: background .25s ease, color .25s ease, border-color .25s ease;">{{ s.time }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESUMO -->
+      <div style="background: #221d17; border-radius: 16px; padding: 36px; align-self: start;">
+        <h3 style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: #f4efe7; margin-bottom: 28px;">Resumo</h3>
+        <div style="display: flex; flex-direction: column; margin-bottom: 28px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid rgba(236,228,214,.1);">
+            <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">Serviço</span>
+            <span style="font-family: 'Newsreader', serif; font-size: 16px; color: #ece4d6;">Avaliação</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid rgba(236,228,214,.1);">
+            <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">Dia</span>
+            <span style="font-family: 'Newsreader', serif; font-size: 16px; color: #ece4d6;">{{ summaryDay }}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid rgba(236,228,214,.1);">
+            <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">Horário</span>
+            <span style="font-family: 'Newsreader', serif; font-size: 16px; color: #ece4d6;">{{ summarySlot }}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0;">
+            <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">Valor</span>
+            <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #cbb79c;">Gratuito</span>
+          </div>
+        </div>
+        <input id="eva-name" type="text" placeholder="Seu nome *" style="width: 100%; background: rgba(236,228,214,.07); border: 1px solid rgba(236,228,214,.18); border-radius: 8px; padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 11.5px; color: #ece4d6; margin-bottom: 10px; outline: none; box-sizing: border-box;" />
+        <input id="eva-phone" type="tel" placeholder="Seu WhatsApp *" style="width: 100%; background: rgba(236,228,214,.07); border: 1px solid rgba(236,228,214,.18); border-radius: 8px; padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 11.5px; color: #ece4d6; margin-bottom: 20px; outline: none; box-sizing: border-box;" />
+        <button onClick="{{ confirmBooking }}" style="width: 100%; background: {{ confirmBtnBg }}; color: {{ confirmBtnColor }}; border: 0; border-radius: 8px; padding: 16px; font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; transition: background .3s ease, color .3s ease; margin-bottom: 18px;">Confirmar agendamento</button>
+        <p style="font-family: 'Space Mono', monospace; font-size: 9.5px; letter-spacing: 1px; color: #8c857a; line-height: 1.8; text-align: center;">Você recebe a confirmação no WhatsApp.<br>Cancelamento gratuito até 2h antes.</p>
+      </div>
+    </div>
+    <div style="padding: 48px 0 0 48px;">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 28px;">
+        <div style="width: 32px; height: 1px; background: #cbb79c;"></div>
+        <span style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 2.5px; text-transform: uppercase; color: #cbb79c;">Onde estamos</span>
+      </div>
+      <h3 style="font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(32px, 3.5vw, 60px); line-height: .96; letter-spacing: -0.5px; color: #f4efe7; margin-bottom: 44px;">Clínica <em style="font-style: italic;">Lume.</em></h3>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 60px; align-items: stretch;">
+      <!-- INFO -->
+      <div style="display: flex; flex-direction: column; gap: 28px; padding: 0 0 48px 48px;">
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a; margin-bottom: 8px;">Endereço</div>
+          <div style="font-family: 'Newsreader', serif; font-size: 18px; color: #ece4d6; line-height: 1.55;">Rua Ricardo Zacharias, 314<br>Parque América · São Paulo – SP</div>
+        </div>
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a; margin-bottom: 8px;">WhatsApp</div>
+          <div style="font-family: 'Newsreader', serif; font-size: 18px; color: #ece4d6;">(11) 00000-0000</div>
+        </div>
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a; margin-bottom: 8px;">Horário</div>
+          <div style="font-family: 'Newsreader', serif; font-size: 18px; color: #ece4d6; line-height: 1.6;">Seg–Sex · 9h às 19h<br>Sáb · 9h às 14h<br><span style="font-size: 15px; color: #8c857a;">Domingo fechado</span></div>
+        </div>
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #8c857a; margin-bottom: 8px;">Instagram</div>
+          <div style="font-family: 'Newsreader', serif; font-size: 18px; color: #ece4d6;">@clinicalume</div>
+        </div>
+      </div>
+      <!-- MAPA -->
+      <div style="border-radius: 14px; overflow: hidden;">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-46.6925%2C-23.7356%2C-46.6875%2C-23.7322&layer=mapnik&marker=-23.7339%2C-46.6900" style="width: 100%; height: 100%; border: 0; filter: brightness(.85) contrast(1.05) saturate(0.5);" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 40px; border-top: 1px solid rgba(236,228,214,.18); padding-top: 28px; flex-wrap: wrap; gap: 16px;">
+      <span style="font-family: 'Bodoni Moda', serif; font-size: 24px; letter-spacing: 5px; color: #f4efe7;">LUME</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">© 2026 Clínica Lume — Estética facial &amp; corporal</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">São Paulo · Brasil</span>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1280, &quot;height&quot;: 900}}">
+class Component extends DCLogic {
+  state = { baPct: 50, scrolled: false, activeT: 0, activeD: 0, activeCase: 0, mounted: false, selectedDay: null, selectedDayStr: '', selectedSlot: null };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const s = window.scrollY > window.innerHeight * 0.7;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._timer = setInterval(() => {
+      this.setState(st => ({ activeD: (st.activeD + 1) % 3 }));
+    }, 5500);
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ mounted: true })));
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    clearInterval(this._timer);
+  }
+
+  baRef = (el) => { this._ba = el; };
+  onDrag = (e) => {
+    if (!this._ba) return;
+    const isTouch = e.touches && e.touches.length;
+    const rect = this._ba.getBoundingClientRect();
+    const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+    let pct = ((clientX - rect.left) / rect.width) * 100;
+    pct = Math.max(2, Math.min(98, pct));
+    this.setState({ baPct: pct });
+  };
+
+  confirmBooking = () => {
+    const name = (document.getElementById('eva-name') || {}).value || '';
+    const phone = (document.getElementById('eva-phone') || {}).value || '';
+    const { selectedDayStr, selectedSlot } = this.state;
+    if (!name.trim() || !phone.trim() || !selectedDayStr || !selectedSlot) {
+      alert('Preencha seu nome e WhatsApp, e selecione dia e horário.');
+      return;
+    }
+    const msg = `Olá! Gostaria de agendar minha avaliação gratuita na Clínica Lume.\n\nNome: ${name.trim()}\nDia: ${selectedDayStr}\nHorário: ${selectedSlot}\nWhatsApp: ${phone.trim()}`;
+    window.open('https://wa.me/5511000000000?text=' + encodeURIComponent(msg), '_blank');
+  };
+
+  renderVals() {
+    const acT = this.state.activeT;
+    const acD = this.state.activeD;
+    const acC = this.state.activeCase;
+    const mounted = this.state.mounted;
+
+    const rawT = [
+      { num: '01', title: 'Skincare avançado', cat: 'Facial', desc: 'Limpeza profunda, peelings e protocolos de rejuvenescimento para uma pele saudável, firme e luminosa.', img: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&q=85&auto=format&fit=crop' },
+      { num: '02', title: 'Gordura localizada', cat: 'Corporal', desc: 'Tecnologias não invasivas para reduzir medidas e tratar as áreas que resistem à dieta e ao exercício.', img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=85&auto=format&fit=crop' },
+      { num: '03', title: 'Emagrecimento', cat: 'Corporal', desc: 'Acompanhamento e protocolos que apoiam o seu processo de emagrecimento com saúde e consistência.', img: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=85&auto=format&fit=crop' },
+      { num: '04', title: 'Modelagem de glúteos', cat: 'Corporal', desc: 'Tonificação e firmeza para realçar o contorno corporal de forma natural, gradual e segura.', img: 'https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=900&q=85&auto=format&fit=crop' },
+      { num: '05', title: 'Bioestimuladores', cat: 'Facial', desc: 'Estímulo natural de colágeno para firmeza, viço e prevenção dos sinais do tempo.', img: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&q=85&auto=format&fit=crop' },
+      { num: '06', title: 'Drenagem & relax', cat: 'Bem-estar', desc: 'Massagens e drenagem linfática que aliviam o corpo e potencializam os resultados dos demais tratamentos.', img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&q=85&auto=format&fit=crop' },
+    ];
+    const treatments = rawT.map((t, i) => {
+      const on = i === acT;
+      return {
+        ...t,
+        onEnter: () => this.setState({ activeT: i }),
+        flex: on ? 3.6 : 1,
+        scale: on ? 1.06 : 1,
+        shade: on ? '.85' : '.55',
+        vOp: on ? 0 : 1,
+        eOp: on ? 1 : 0,
+        eTy: on ? '0px' : '18px',
+        pe: on ? 'auto' : 'none',
+      };
+    });
+
+    const rawC = [
+      { num: '01', treat: 'Skincare facial', cat: 'Facial', result: 'Viço & textura', sessions: '8 sessões', days: '90 dias', before: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=85&auto=format&fit=crop', after: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=85&auto=format&fit=crop' },
+      { num: '02', treat: 'Gordura localizada', cat: 'Corporal', result: 'Novo contorno', sessions: '6 sessões', days: '120 dias', before: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=85&auto=format&fit=crop', after: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=85&auto=format&fit=crop' },
+      { num: '03', treat: 'Bioestimuladores', cat: 'Facial', result: 'Firmeza facial', sessions: '3 sessões', days: '60 dias', before: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=85&auto=format&fit=crop', after: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=85&auto=format&fit=crop' },
+      { num: '04', treat: 'Modelagem glúteos', cat: 'Corporal', result: 'Tônus & firmeza', sessions: '10 sessões', days: '150 dias', before: 'https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1200&q=85&auto=format&fit=crop', after: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=85&auto=format&fit=crop' },
+    ];
+    const cases = rawC.map((c, i) => {
+      const on = i === acC;
+      return {
+        ...c,
+        onEnter: () => this.setState({ activeCase: i, baPct: 50 }),
+        layerOp: on ? 1 : 0,
+        barColor: on ? '#cbb79c' : 'rgba(236,228,214,.2)',
+        thumbFilter: on ? 'none' : 'grayscale(1) brightness(.65)',
+        thumbScale: on ? 1.04 : 1,
+        labelColor: on ? '#f4efe7' : '#8c857a',
+      };
+    });
+
+    const quotes = [
+      { quote: 'Me senti acolhida desde a primeira avaliação. Os resultados na minha pele superaram tudo o que eu esperava.', name: 'Marina L.', service: 'Skincare avançado', initial: 'M' },
+      { quote: 'Profissionais que realmente escutam. Em poucos meses recuperei minha confiança e me sinto muito melhor.', name: 'Carolina R.', service: 'Modelagem corporal', initial: 'C' },
+      { quote: 'Ambiente lindo, atendimento impecável e resultados naturais. Virei cliente para a vida toda.', name: 'Beatriz S.', service: 'Bioestimuladores', initial: 'B' },
+    ];
+
+    const dayNamesShort = ['DOM','SEG','TER','QUA','QUI','SEX','SÁB'];
+    const monthNames = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+    const bookDays = [];
+    let dd = new Date();
+    while (bookDays.length < 10) {
+      if (dd.getDay() !== 0) {
+        const idx = bookDays.length;
+        const sel = this.state.selectedDay === idx;
+        const lbl = idx === 0 ? 'HOJE' : dayNamesShort[dd.getDay()];
+        const dayStr = `${lbl}  ${String(dd.getDate()).padStart(2,'0')} ${monthNames[dd.getMonth()]}`;
+        bookDays.push({
+          label: lbl,
+          day: String(dd.getDate()).padStart(2,'0'),
+          month: monthNames[dd.getMonth()],
+          onClick: ((i, ds) => () => this.setState({ selectedDay: i, selectedDayStr: ds, selectedSlot: null }))(idx, dayStr),
+          bg: sel ? '#cbb79c' : 'transparent',
+          border: sel ? '#cbb79c' : 'rgba(236,228,214,.18)',
+          color: sel ? '#1a1611' : '#ece4d6',
+          labelColor: sel ? 'rgba(26,22,17,.7)' : '#8c857a',
+        });
+      }
+      const next = new Date(dd); next.setDate(next.getDate() + 1); dd = next;
+    }
+    const takenSlots = new Set(['10:30','15:15']);
+    const allSlots = ['09:00','09:45','10:30','11:15','13:00','13:45','14:30','15:15','16:00','16:45','17:30','18:15'];
+    const bookSlots = allSlots.map(s => {
+      const taken = takenSlots.has(s);
+      const sel = this.state.selectedSlot === s;
+      return {
+        time: s,
+        onClick: taken ? null : () => this.setState({ selectedSlot: s }),
+        color: taken ? 'rgba(236,228,214,.22)' : sel ? '#1a1611' : '#ece4d6',
+        bg: sel ? '#cbb79c' : 'transparent',
+        border: taken ? 'rgba(236,228,214,.1)' : sel ? '#cbb79c' : 'rgba(236,228,214,.25)',
+        cursor: taken ? 'default' : 'pointer',
+        strike: taken ? 'line-through' : 'none',
+      };
+    });
+    const canConfirm = !!(this.state.selectedDayStr && this.state.selectedSlot);
+    const summaryDay = this.state.selectedDayStr || '—';
+    const summarySlot = this.state.selectedSlot || '—';
+    const slotsOp = this.state.selectedDay !== null ? 1 : 0.4;
+    const slotsPe = this.state.selectedDay !== null ? 'auto' : 'none';
+    const slotHint = this.state.selectedDay !== null ? '' : 'escolha um dia primeiro';
+
+    return {
+      treatments,
+      cases,
+      active: cases[acC],
+      quotes,
+      bookDays,
+      bookSlots,
+      summaryDay,
+      summarySlot,
+      slotsOp,
+      slotsPe,
+      slotHint,
+      confirmBooking: this.confirmBooking,
+      confirmBtnBg: canConfirm ? '#cbb79c' : 'rgba(236,228,214,.1)',
+      confirmBtnColor: canConfirm ? '#1a1611' : 'rgba(236,228,214,.3)',
+      baPct: this.state.baPct,
+      introOp: mounted ? 1 : 0,
+      introTy: mounted ? '0px' : '30px',
+      navBg: this.state.scrolled ? 'rgba(244,239,231,0.55)' : 'rgba(244,239,231,0)',
+      navBorder: this.state.scrolled ? 'rgba(26,22,17,0.15)' : 'rgba(26,22,17,0)',
+      navInk: this.state.scrolled ? '#1a1611' : '#f4efe7',
+      navBlur: this.state.scrolled ? 'blur(16px) saturate(160%)' : 'none',
+    };
+  }
+}
+</script>
+</body>
+</html>

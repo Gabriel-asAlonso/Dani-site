@@ -33,6 +33,9 @@
     .eva-case-selector { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 1040px; margin: 0 auto; }
     .eva-mobile-results { display: none; }
     .eva-icon { display: block; flex: 0 0 auto; }
+    .eva-section-title { display: inline-flex; align-items: center; gap: 14px; font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 400; line-height: 1.2; letter-spacing: 2.5px; text-transform: uppercase; text-align: center; }
+    .eva-section-title::before, .eva-section-title::after { content: ""; width: clamp(20px, 5vw, 56px); height: 1px; background: currentColor; opacity: .45; flex: 0 0 auto; }
+    .eva-section-title em { font-style: normal; font-weight: 400; }
     button, a, input { -webkit-tap-highlight-color: transparent; }
     button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #cbb79c; outline-offset: 3px; }
 
@@ -146,12 +149,18 @@
       .eva-footer { align-items: flex-start !important; flex-direction: column !important; gap: 10px !important; }
       .eva-footer span { line-height: 1.55; }
       .eva-section-heading { flex-wrap: wrap; padding-left: 18px !important; padding-right: 18px !important; column-gap: 14px !important; row-gap: 8px !important; }
-      .eva-section-heading span:last-child { font-size: 11px !important; letter-spacing: 1.6px !important; }
+      .eva-section-heading .eva-section-title { font-size: 11px !important; letter-spacing: 1.6px !important; }
       .eva-location-heading, .eva-location-info { padding-left: 0 !important; }
       #contato input { font-size: 16px !important; min-height: 48px; }
       .eva-contact-kicker { flex-wrap: wrap; column-gap: 14px !important; row-gap: 8px !important; }
       .eva-contact-kicker span:last-child { font-size: 11px !important; letter-spacing: 1.6px !important; }
     }
+
+    #tratamentos > div:first-child > div:first-child { flex: none; }
+    #tratamentos > div:first-child { position: relative; }
+    #tratamentos > div:first-child > div:first-child { flex: 1; justify-content: center; }
+    #tratamentos > div:first-child > span { position: absolute; right: 0; }
+    #transformacoes > div:first-child, #espaco > div:first-child, .eva-section-heading { justify-content: center; text-align: center; }
   </style>
 </helmet>
 
@@ -207,8 +216,7 @@
   <section id="tratamentos" style="padding: 0 40px; background: #ece4d6;">
     <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 26px 0 40px;">
       <div style="display: flex; align-items: baseline; gap: 24px;">
-        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">01</span>
-        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Tratamentos</span>
+        <span class="eva-section-title">Tratamentos</span>
       </div>
       <span style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">Passe o mouse para explorar
         <svg class="eva-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="14" height="14">
@@ -242,10 +250,7 @@
 
   <!-- 02 TRANSFORMAÇÕES -->
   <section id="transformacoes" style="padding: 0 40px; background: #1a1611; color: #ece4d6;">
-    <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid rgba(236,228,214,.32); padding: 26px 0 12px;">
-      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #cbb79c;">02</span>
-      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #cbb79c;">Transformações</span>
-    </div>
+
     <div style="text-align: center; padding: 30px 0 48px;">
       <h2 style="font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(38px, 5vw, 82px); line-height: 1.02; letter-spacing: -.5px; color: #f4efe7;">Resultados que falam <em style="font-style: italic;">por si.</em></h2>
       <p class="eva-results-description" style="font-family: 'Newsreader', serif; font-size: 17px; line-height: 1.7; font-weight: 300; color: #b6ab98; max-width: 52ch; margin: 22px auto 0;">Veja as imagens de antes e depois lado a lado. Cada caso é um protocolo personalizado — escolha um tratamento abaixo.</p>
@@ -322,8 +327,7 @@
   <!-- 03 DEPOIMENTOS -->
   <section style="padding: 0; background: #ece4d6; overflow: hidden;">
     <div class="eva-section-heading" style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid #1a1611; padding: 26px 40px 72px;">
-      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">03</span>
-      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Palavra de quem confia</span>
+      <span class="eva-section-title">Palavra de quem confia</span>
     </div>
     <div style="overflow: hidden; padding-bottom: 110px; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);">
       <div class="eva-scroll-track" style="display: flex; gap: 20px; animation: evaScrollLeft 90s linear infinite; width: max-content;">
@@ -353,9 +357,8 @@
 
   <!-- 04 ESPAÇO -->
   <section id="espaco" style="padding: 0 40px;">
-    <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid #1a1611; padding: 26px 0 56px;">
-      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">04</span>
-      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Nosso espaço</span>
+    <div style="display: flex; align-items: baseline; gap: 24px; padding: 26px 0 56px;">
+      <span class="eva-section-title">Nosso espaço</span>
     </div>
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding-bottom: 32px;">
       <figure style="margin: 0; grid-column: span 2;">

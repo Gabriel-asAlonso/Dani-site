@@ -32,6 +32,7 @@
     .eva-results-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .eva-case-selector { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 1040px; margin: 0 auto; }
     .eva-mobile-results { display: none; }
+    .eva-icon { display: block; flex: 0 0 auto; }
     button, a, input { -webkit-tap-highlight-color: transparent; }
     button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #cbb79c; outline-offset: 3px; }
 
@@ -100,6 +101,7 @@
       #capa > div:nth-child(3) { display: none !important; }
       #capa > div:nth-child(4) { left: 18px !important; right: 18px !important; bottom: 24px !important; }
       #capa > div:nth-child(4) > div { grid-template-columns: 1fr !important; gap: 20px !important; }
+      .eva-hero-specialties { display: none !important; }
       #capa h1 { font-size: clamp(42px, 13vw, 62px) !important; max-width: 11ch !important; }
       #capa > div:nth-child(4) a { width: 108px !important; height: 108px !important; justify-self: end; }
       #espaco > div:first-child { padding-bottom: 42px !important; }
@@ -183,7 +185,7 @@
       
       <div style="display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px;">
         <div style="opacity: {{ introOp }}; transform: translateY({{ introTy }}); transition: opacity 1s ease .15s, transform 1s cubic-bezier(.6,0,.2,1) .15s;">
-          <div style="font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(244,239,231,.8); margin-bottom: 22px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+          <div class="eva-hero-specialties" style="font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(244,239,231,.8); margin-bottom: 22px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
             <span style="display: flex; align-items: center; gap: 10px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(244,239,231,.6); flex-shrink: 0;"></span>Skincare avançado</span>
             <span style="display: flex; align-items: center; gap: 10px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(244,239,231,.6); flex-shrink: 0;"></span>Modelagem corporal</span>
             <span style="display: flex; align-items: center; gap: 10px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(244,239,231,.6); flex-shrink: 0;"></span>Bioestimuladores</span>
@@ -193,7 +195,9 @@
         <a href="#contato" style="flex-shrink: 0; width: 132px; height: 132px; border-radius: 50%; border: 1px solid rgba(244,239,231,.7); display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: #f4efe7; gap: 4px; opacity: {{ introOp }}; transition: opacity 1s ease .35s, background .4s ease, color .4s ease;" style-hover="background:#f4efe7; color:#1a1611;">
           <span style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase;">Agendar</span>
           <span style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 20px;">avaliação</span>
-          <span style="font-size: 16px; margin-top: 2px;">↗</span>
+          <svg class="eva-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="17" height="17" style="margin-top: 3px;">
+            <path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
         </a>
       </div>
     </div>
@@ -206,7 +210,11 @@
         <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">01</span>
         <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Tratamentos</span>
       </div>
-      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">Passe o mouse para explorar →</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a;">Passe o mouse para explorar
+        <svg class="eva-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="14" height="14">
+          <path d="M5 12h14M14 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </span>
     </div>
     <div style="display: flex; gap: 10px; height: 600px; padding-bottom: 110px;">
       <sc-for list="{{ treatments }}" as="t" hint-placeholder-count="5">
@@ -221,7 +229,11 @@
             <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #cbb79c;">{{ t.cat }}</span>
             <h3 style="font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 38px; line-height: 1.02; color: #f4efe7; margin: 12px 0 14px;">{{ t.title }}</h3>
             <p style="font-family: 'Newsreader', serif; font-size: 16px; line-height: 1.62; font-weight: 300; color: rgba(244,239,231,.86); max-width: 42ch; margin-bottom: 22px;">{{ t.desc }}</p>
-            <a href="#contato" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f4efe7; text-decoration: none; border-bottom: 1px solid rgba(244,239,231,.5); padding-bottom: 5px;">Agendar ↗</a>
+            <a href="#contato" style="display: inline-flex; align-items: center; gap: 7px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f4efe7; text-decoration: none; border-bottom: 1px solid rgba(244,239,231,.5); padding-bottom: 5px;">Agendar
+              <svg class="eva-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="13" height="13">
+                <path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </a>
           </div>
         </div>
       </sc-for>
@@ -307,42 +319,10 @@
     </div>
   </section>
 
-  <!-- 03 ESPAÇO -->
-  <section id="espaco" style="padding: 0 40px;">
-    <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid #1a1611; padding: 26px 0 56px;">
-        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">03</span>
-      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Nosso espaço</span>
-    </div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding-bottom: 32px;">
-      <figure style="margin: 0; grid-column: span 2;">
-        <div style="aspect-ratio: 16/10; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1100&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
-        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 03 — Recepção</figcaption>
-      </figure>
-      <figure style="margin: 0;">
-        <div style="aspect-ratio: 4/5; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
-        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 04 — Detalhes</figcaption>
-      </figure>
-    </div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding-bottom: 120px;">
-      <figure style="margin: 0;">
-        <div style="aspect-ratio: 1; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
-        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 05 — Sala de procedimentos</figcaption>
-      </figure>
-      <figure style="margin: 0;">
-        <div style="aspect-ratio: 1; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
-        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 06 — Bem-estar</figcaption>
-      </figure>
-      <figure style="margin: 0;">
-        <div style="aspect-ratio: 1; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
-        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 07 — Ambiente</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 04 DEPOIMENTOS -->
+  <!-- 03 DEPOIMENTOS -->
   <section style="padding: 0; background: #ece4d6; overflow: hidden;">
     <div class="eva-section-heading" style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid #1a1611; padding: 26px 40px 72px;">
-      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">04</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">03</span>
       <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Palavra de quem confia</span>
     </div>
     <div style="overflow: hidden; padding-bottom: 110px; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);">
@@ -371,10 +351,44 @@
     </div>
   </section>
 
+  <!-- 04 ESPAÇO -->
+  <section id="espaco" style="padding: 0 40px;">
+    <div style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid #1a1611; padding: 26px 0 56px;">
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;">04</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;">Nosso espaço</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding-bottom: 32px;">
+      <figure style="margin: 0; grid-column: span 2;">
+        <div style="aspect-ratio: 16/10; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1100&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 03 — Recepção</figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 4/5; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 04 — Detalhes</figcaption>
+      </figure>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding-bottom: 120px;">
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 1; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 05 — Sala de procedimentos</figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 1; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 06 — Bem-estar</figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="aspect-ratio: 1; background: #ddd0bd; overflow: hidden;"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=700&q=85&auto=format&fit=crop" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease;" style-hover="transform:scale(1.05);"></div>
+        <figcaption style="font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #8c857a; margin-top: 12px;">Fig. 07 — Ambiente</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <!-- CONTATO -->
   <section id="contato" style="background: #1a1611; color: #ece4d6; padding: 0 40px;">
     <div class="eva-contact-kicker" style="display: flex; align-items: baseline; gap: 24px; border-top: 1px solid rgba(236,228,214,.3); padding: 26px 0 64px;">
-      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #cbb79c;">↗</span>
+      <svg class="eva-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="14" height="14" style="color: #cbb79c;">
+        <path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
       <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #cbb79c;">Agende sua avaliação</span>
     </div>
     <div class="eva-booking-layout" style="display: grid; grid-template-columns: 1fr 380px; gap: 60px; padding-bottom: 90px; align-items: start;">
